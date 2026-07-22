@@ -1,10 +1,13 @@
 import getAllMatches from "pattern-collector-routesjs-import";
 
 const parseRegex = /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/end-points\.js['"];/;
+const showLog = true;
 
 const startFunc = ({ fileContent }) => {
 
     const matches = getAllMatches({ fileContent });
+
+    if (showLog) console.log("matches : ", matches);
 
     return matches.map(match => {
         const clean = match.line.replace(/[\r\n]/g, '');
