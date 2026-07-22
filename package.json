@@ -1,6 +1,6 @@
 {
   "name": "pattern-collector-routesjs-import-extract",
-  "version": "1.6.1",
+  "version": "1.7.1",
   "description": "A high-performance pattern collector and ESM import statement analyzer.",
   "keywords": [
     "pattern",
