@@ -367,10 +367,10 @@
 
       <div class="hero">
          <h1>Route JS Import Extract</h1>
-         <p>A high-performance ESM import statement analyzer targeting Express router imports specifically from <code>routes.js</code> files.</p>
+         <p>A high-performance ESM import statement analyzer targeting aliased Express router imports from one-level relative folders.</p>
          <div class="badges">
             <span class="badge">🚀 Zero Dependencies</span>
-            <span class="badge">📂 Specific routes.js Focus</span>
+            <span class="badge">📂 Relative ./folder Focus</span>
             <span class="badge">📦 ESM Native</span>
             <span class="badge">🔥 Pure JS</span>
          </div>
@@ -396,6 +396,33 @@ const results = routeImportExtract({
   fileContent: codeText,
   inShowLog: false
 });</code></pre>
+         </div>
+      </div>
+
+      <div class="grid" style="margin-top: -16px;">
+         <div class="card" style="grid-column: 1 / -1;">
+            <h2>🔗 Dependency Chain</h2>
+            <p>The dependency listed in <code>package.json</code> is the first parser stage used by this package:</p>
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+               <thead>
+                  <tr style="border-bottom: 2px solid var(--border-color); color: var(--accent);">
+                     <th style="padding: 10px 0; width: 32%">Package</th>
+                     <th style="padding: 10px 0; width: 16%">Version</th>
+                     <th style="padding: 10px 0;">Links</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-color);">
+                     <td style="padding: 10px 0; font-family: 'Fira Code', monospace; color: var(--accent);">pattern-collector-routesjs-import</td>
+                     <td style="padding: 10px 0; font-family: 'Fira Code', monospace; color: var(--text-secondary);">^1.4.7</td>
+                     <td style="padding: 10px 0;">
+                        <a href="https://www.npmjs.com/package/pattern-collector-routesjs-import" target="_blank" style="color: var(--accent); text-decoration: none;">NPM</a>
+                        <span style="color: var(--text-muted);"> | </span>
+                        <a href="https://github.com/keshavsoft/pattern-collector-routesjs-import" target="_blank" style="color: var(--accent); text-decoration: none;">GitHub</a>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
          </div>
       </div>
 
@@ -430,8 +457,24 @@ const results = routeImportExtract({
             </div>
             
             <div class="alert alert-warning">
-               <strong>⚠️ Important Version Update:</strong> Starting in v1.6.0+, this library uses parser core v5 which strictly targets <strong><code>routes.js</code></strong> files only. Other naming conventions like <code>end-points.js</code> are intentionally skipped.
+               <strong>⚠️ Parser Regex Contract:</strong> Current v7 uses <code>/import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/</code>. It captures <code>variable</code> from <code>router as alias</code> and <code>folderName</code> from the first folder after <code>./</code>. It does not restrict the filename to <code>routes.js</code>.
             </div>
+         </div>
+      </div>
+
+      <div class="grid" style="margin-top: -16px;">
+         <div class="card" style="grid-column: 1 / -1;">
+            <h2>🧭 How Matching Works</h2>
+            <p>The package runs in two stages. First, <a href="https://www.npmjs.com/package/pattern-collector-routesjs-import" target="_blank" style="color: var(--accent); text-decoration: none;"><code>pattern-collector-routesjs-import</code></a> collects relative import lines. Then this package applies <code>parseRegex</code> to keep only named router alias imports from <code>./&lt;folder&gt;/...</code>.</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>const parseRegex = /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/;</code></pre>
+            <p>These match because both use <code>router as alias</code> and start with a one-level relative folder:</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import { router as routerFromv1 } from "./v1/routes.js";
+import { router as routerFromdoctors } from "./doctors/end-points.js";</code></pre>
+            <p>These do not match:</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import express from "express";
+import routerFromv1 from "./v1/routes.js";
+import { router } from "./v1/routes.js";
+import { router as routerFromv1 } from "../v1/routes.js";</code></pre>
          </div>
       </div>
 
@@ -449,10 +492,12 @@ const results = routeImportExtract({
 import { router as routerFromv1 } from "./v1/routes.js";
 import { router as routerFromv2 } from "./v2/routes.js";
 import { router as routerFromv3 } from "./v3/routes.js";
+import { router as routerFromdoctors } from "./doctors/end-points.js";
 import { router as routerFrommasters } from "./masters/routes.js";
 
 const router = express.Router();
 router.use("/masters", routerFrommasters);
+router.use("/doctors", routerFromdoctors);
 router.use("/v3", routerFromv3);
 router.use("/v2", routerFromv2);
 router.use("/v1", routerFromv1);
@@ -512,7 +557,7 @@ console.log("ssssssssss : ", results);</code></pre>
 import { router as routerFromv1 } from "./v1/routes.js";
 import { router as routerFromv2 } from "./v2/routes.js";
 import { router as routerFromv3 } from "./v3/routes.js";
-import { router as routerFromdoctors } from "./doctors/end-points.js"; // This will NOT match (only routes.js is processed)
+import { router as routerFromdoctors } from "./doctors/end-points.js"; // This matches current v7 because it is ./doctors/...
 import { router as routerFrommasters } from "./masters/routes.js";
 
 const router = express.Router();
@@ -567,8 +612,8 @@ const router = express.Router();
                searchString.lastIndex = 0;
             });
 
-            // Second step: parse and filter using the routes.js only regex
-            const parseRegex = /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/routes\.js['"];/;
+            // Second step: parse and filter using the current v7 regex
+            const parseRegex = /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/;
             
             const results = matches.map(match => {
                const clean = match.line.replace(/[\r\n]/g, '');
