@@ -1,6 +1,9 @@
 import getAllMatches from "pattern-collector-routesjs-import";
 
-const parseRegex = /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/routes\.js['"];/;
+// const parseRegex = /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/routes\.js['"];/;
+// take care here this regex will only filter relative imports not npm 
+
+const parseRegex = /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/.*['"]/;
 const showLog = false;
 
 const startFunc = ({ fileContent, inShowLog, showLogStep1 }) => {
