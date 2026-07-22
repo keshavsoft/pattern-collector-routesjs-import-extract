@@ -9,8 +9,8 @@ const fileContent = fs.readFileSync(filePath, 'utf8');
 
 const k1 = defaultFunc({
     fileContent,
-    showLog: true,
-    showLogStep1: true
+    showLog: false,
+    showLogStep1: false
 });
 
 console.log("ssssssssss : ", k1);
