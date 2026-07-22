@@ -1,7 +1,7 @@
 import getAllMatches from "pattern-collector-routesjs-import";
 
 const parseRegex = /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/end-points\.js['"];/;
-const showLog = true;
+const showLog = false;
 
 const startFunc = ({ fileContent }) => {
 
