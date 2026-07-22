@@ -34,7 +34,7 @@ jobs:
 
       - name: Update dependencies
         run: |
-          npm install pattern-collector-routesjs-import@latest
+          npm install pattern-collector-routesjs-import@latest pattern-collector-routesjs-import-extract-regex@latest
 
       - name: Run Tests
         run: |
