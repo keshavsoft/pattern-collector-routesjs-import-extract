@@ -4,7 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>pattern-collector 🔍 | High-Performance Pattern Collector Docs</title>
+   <title>pattern-collector-routesjs-import-extract 🔍 | Route Imports Extractor Docs</title>
    
    <!-- Google Fonts (Inter & Fira Code) -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,7 +57,7 @@
       }
 
       .logo {
-         font-size: 20px;
+         font-size: 18px;
          font-weight: 700;
          color: var(--text-primary);
          display: flex;
@@ -97,7 +97,7 @@
       }
 
       .hero h1 {
-         font-size: 44px;
+         font-size: 38px;
          font-weight: 800;
          margin-bottom: 16px;
          letter-spacing: -1px;
@@ -109,7 +109,7 @@
       .hero p {
          font-size: 18px;
          color: var(--text-secondary);
-         max-width: 700px;
+         max-width: 800px;
          margin: 0 auto 24px;
          font-weight: 300;
       }
@@ -172,6 +172,22 @@
          color: var(--text-secondary);
          margin-bottom: 20px;
          font-weight: 300;
+      }
+
+      .alert {
+         background: rgba(56, 189, 248, 0.08);
+         border-left: 4px solid var(--accent);
+         padding: 15px;
+         border-radius: 4px;
+         margin-top: 15px;
+         font-size: 13.5px;
+         color: var(--text-secondary);
+      }
+
+      .alert-warning {
+         background: rgba(245, 158, 11, 0.08);
+         border-left: 4px solid #f59e0b;
+         color: #ffedd5;
       }
 
       /* Code styling */
@@ -240,12 +256,6 @@
          margin-bottom: 20px;
       }
 
-      @media(min-width: 768px) {
-         .playground-inputs {
-            grid-template-columns: 2fr 1fr;
-         }
-      }
-
       .input-group {
          display: flex;
          flex-direction: column;
@@ -260,7 +270,7 @@
          letter-spacing: 0.5px;
       }
 
-      .input-group textarea, .input-group input {
+      .input-group textarea {
          background: #090d16;
          border: 1px solid var(--border-color);
          border-radius: 8px;
@@ -273,7 +283,7 @@
          transition: border-color 0.2s ease;
       }
 
-      .input-group textarea:focus, .input-group input:focus {
+      .input-group textarea:focus {
          border-color: var(--accent);
       }
 
@@ -288,7 +298,8 @@
          cursor: pointer;
          transition: opacity 0.2s ease, transform 0.1s ease;
          display: inline-block;
-         width: 100%;
+         width: auto;
+         align-self: flex-start;
       }
 
       .btn:hover {
@@ -323,20 +334,9 @@
          font-size: 13px;
          color: var(--text-primary);
          min-height: 80px;
-         max-height: 300px;
+         max-height: 400px;
          overflow-y: auto;
          white-space: pre-wrap;
-      }
-
-      .matched-item {
-         color: #38bdf8;
-         margin-bottom: 4px;
-         word-break: break-all;
-      }
-
-      .no-match {
-         color: var(--text-muted);
-         font-style: italic;
       }
 
       footer {
@@ -357,21 +357,20 @@
    <div class="container">
       <nav>
          <a href="#" class="logo">
-            <span>pattern-collector</span> 🔍
+            <span>pattern-collector-routesjs-import-extract</span> 🔍
          </a>
          <div class="nav-links">
-            <a href="https://www.npmjs.com/package/pattern-collector" target="_blank">NPM Package</a>
-            <a href="https://github.com/keshavsoft/pattern-collector" target="_blank">GitHub</a>
-            <a href="https://github.com/keshavsoft/pattern-collector/actions/workflows/npm-publish.yml" target="_blank">Publish Workflow</a>
+            <a href="https://www.npmjs.com/package/pattern-collector-routesjs-import-extract" target="_blank">NPM Package</a>
+            <a href="https://github.com/keshavsoft/pattern-collector-routesjs-import-extract" target="_blank">GitHub</a>
          </div>
       </nav>
 
       <div class="hero">
-         <h1>Pattern Collector</h1>
-         <p>A high-performance pattern collector and ESM import statement analyzer for JavaScript.</p>
+         <h1>Route JS Import Extract</h1>
+         <p>A high-performance ESM import statement analyzer targeting Express router imports specifically from <code>routes.js</code> files.</p>
          <div class="badges">
             <span class="badge">🚀 Zero Dependencies</span>
-            <span class="badge">🧩 Custom Regex Matching</span>
+            <span class="badge">📂 Specific routes.js Focus</span>
             <span class="badge">📦 ESM Native</span>
             <span class="badge">🔥 Pure JS</span>
          </div>
@@ -381,21 +380,21 @@
          <!-- Card 1: Installation -->
          <div class="card">
             <h2>📦 Installation</h2>
-            <p>Install the package into your project using npm or yarn:</p>
-            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>npm install pattern-collector</code></pre>
+            <p>Install the package into your project using npm:</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>npm install pattern-collector-routesjs-import-extract</code></pre>
             <p>Or yarn:</p>
-            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>yarn add pattern-collector</code></pre>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>yarn add pattern-collector-routesjs-import-extract</code></pre>
          </div>
 
          <!-- Card 2: Basic Usage -->
          <div class="card">
             <h2>🛠️ Basic Usage</h2>
-            <p>Import and invoke the default function in your ES Modules:</p>
-            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import patternCollector from 'pattern-collector';
+            <p>Import and invoke the default function to extract routes:</p>
+            <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import routeImportExtract from 'pattern-collector-routesjs-import-extract';
 
-const matches = patternCollector({
+const results = routeImportExtract({
   fileContent: codeText,
-  searchString: /regex_pattern/g
+  inShowLog: false
 });</code></pre>
          </div>
       </div>
@@ -405,13 +404,13 @@ const matches = patternCollector({
          <div class="card" style="grid-column: 1 / -1;">
             <h2>🛠️ API Signature Reference</h2>
             <p>The default exported function accepts a single configuration object parameter:</p>
-            <pre><code>patternCollector({ fileContent, searchString })</code></pre>
+            <pre><code>routeImportExtract({ fileContent, inShowLog })</code></pre>
             <div style="margin-top: 15px;">
                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
                   <thead>
                      <tr style="border-bottom: 2px solid var(--border-color); color: var(--accent);">
-                        <th style="padding: 10px 0;">Parameter</th>
-                        <th style="padding: 10px 0;">Type</th>
+                        <th style="padding: 10px 0; width: 20%">Parameter</th>
+                        <th style="padding: 10px 0; width: 15%">Type</th>
                         <th style="padding: 10px 0;">Description</th>
                      </tr>
                   </thead>
@@ -419,172 +418,82 @@ const matches = patternCollector({
                      <tr style="border-bottom: 1px solid var(--border-color);">
                         <td style="padding: 10px 0; font-family: 'Fira Code', monospace; color: var(--accent);">fileContent</td>
                         <td style="padding: 10px 0; font-family: 'Fira Code', monospace; color: var(--text-secondary);">string</td>
-                        <td style="padding: 10px 0; color: var(--text-secondary);">The raw file content text to scan.</td>
-                     </tr>
-                     <tr style="border-bottom: 1px solid var(--border-color);">
-                        <td style="padding: 10px 0; font-family: 'Fira Code', monospace; color: var(--accent);">searchString</td>
-                        <td style="padding: 10px 0; font-family: 'Fira Code', monospace; color: var(--text-secondary);">RegExp</td>
-                        <td style="padding: 10px 0; color: var(--text-secondary);">A global (<code>/g</code>) RegExp pattern to scan and collect.</td>
-                     </tr>
+                        <td style="padding: 10px 0; color: var(--text-secondary);">The raw JavaScript file content to scan.</td>
+                      </tr>
+                      <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 10px 0; font-family: 'Fira Code', monospace; color: var(--accent);">inShowLog</td>
+                        <td style="padding: 10px 0; font-family: 'Fira Code', monospace; color: var(--text-secondary);">boolean</td>
+                        <td style="padding: 10px 0; color: var(--text-secondary);">Optionally log matches to the console (default: false).</td>
+                      </tr>
                   </tbody>
                </table>
+            </div>
+            
+            <div class="alert alert-warning">
+               <strong>⚠️ Important Version Update:</strong> Starting in v1.6.0+, this library uses parser core v5 which strictly targets <strong><code>routes.js</code></strong> files only. Other naming conventions like <code>end-points.js</code> are intentionally skipped.
             </div>
          </div>
       </div>
 
-      <!-- Toggleable Code & Output Example -->
-      <div class="card" style="grid-column: 1 / -1; margin-top: -16px; margin-bottom: 40px;">
-         <h2>📋 Code & Output Example</h2>
-         <p>Click the button below to show a full static script execution example along with the console output results.</p>
-         
-         <button class="btn" id="toggle-example-btn" style="width: auto; padding: 10px 20px; margin-bottom: 15px;" onclick="toggleExampleContent()">Show Example Code & Output</button>
-         
-         <div id="example-content" style="display: none; border-top: 1px solid var(--border-color); padding-top: 20px; margin-top: 15px;">
-            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-               <button class="copy-btn" id="btn-v2-tab" onclick="switchExample('v2')" style="position: static; padding: 6px 14px; background: var(--bg-hover); border-color: var(--accent); color: var(--text-primary); font-size: 12px; border-radius: 6px;">V2 Test App (app.js)</button>
-               <button class="copy-btn" id="btn-v3-tab" onclick="switchExample('v3')" style="position: static; padding: 6px 14px; background: var(--bg-card); border-color: var(--border-color); color: var(--text-muted); font-size: 12px; border-radius: 6px;">V3 Test App (app.js)</button>
-               <button class="copy-btn" id="btn-v4-tab" onclick="switchExample('v4')" style="position: static; padding: 6px 14px; background: var(--bg-card); border-color: var(--border-color); color: var(--text-muted); font-size: 12px; border-radius: 6px;">V4 Test App (app.js)</button>
-            </div>
+      <div class="grid" style="margin-top: -16px;">
+         <!-- Card 4: Real-World Test Example (v3) -->
+         <div class="card" style="grid-column: 1 / -1;">
+            <h2>📋 Real-World Test Example (test/v3)</h2>
+            <p>Here is the actual implementation of the test suite (<code>test/v3</code>) showing how the library extracts router imports from a <code>routes.js</code> file:</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 15px;">
+               <div>
+                  <h3 style="font-size: 15px; margin-bottom: 8px; color: var(--accent);">1. The Router File (<code>test/v3/routes.js</code>)</h3>
+                  <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import express from 'express';
 
-            <!-- V2 Example Container -->
-            <div id="v2-example">
-               <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 15px;"><strong>Regex Pattern (searchString):</strong> <code style="color: var(--accent); background: var(--bg-hover); padding: 2px 6px; border-radius: 4px;">/import\s+[\s\S]*?\s+from\s+['"][^'"]+['"]|import\s+['"][^'"]+['"]/g</code></p>
-               <div class="grid" style="margin-bottom: 0;">
-                  <div style="flex: 1;">
-                     <h3 style="font-size: 15px; margin-bottom: 8px; color: var(--accent);">JavaScript Execution Code</h3>
-                     <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import patternCollector from 'pattern-collector';
+import { router as routerFromv1 } from "./v1/routes.js";
+import { router as routerFromv2 } from "./v2/routes.js";
+import { router as routerFromv3 } from "./v3/routes.js";
+import { router as routerFrommasters } from "./masters/routes.js";
 
-const code = `import { exec } from "child_process";
-import dotenv from 'dotenv'
-dotenv.config({ path: '.env' })
+const router = express.Router();
+router.use("/masters", routerFrommasters);
+router.use("/v3", routerFromv3);
+router.use("/v2", routerFromv2);
+router.use("/v1", routerFromv1);
 
-import express from "express";
-
-import { router as routerFromapi }
- from './api/routes.js';
-
-import setupRoutes from "./routes.js";
-import startServer from "./server.js";
-
-const app = express()
-
-app.use('/api', routerFromapi);
-
-setupRoutes(app);
-
-const { port } = startServer(app);
-
-if (process.env.OPEN_BROWSER === "true") {
-    exec(\`start http://localhost:\${port}/v26/quotations/index.html\`);
-};`;
-
-const matches = patternCollector({
-  fileContent: code,
-  searchString: /import\s+[\s\S]*?\s+from\s+['"][^'"]+['"]|import\s+['"][^'"]+['"]/g
-});
-
-console.log(matches);</code></pre>
-                  </div>
-                  
-                  <div style="flex: 1;">
-                     <h3 style="font-size: 15px; margin-bottom: 8px; color: var(--accent);">Console Output Results</h3>
-                     <pre><code>[
-  'import { exec } from "child_process"',
-  "import dotenv from 'dotenv'",
-  'import express from "express"',
-  "import { router as routerFromapi }\n from './api/routes.js'",
-  'import setupRoutes from "./routes.js"',
-  'import startServer from "./server.js"'
-]</code></pre>
-                  </div>
+export { router };</code></pre>
                </div>
-            </div>
+               
+               <div>
+                  <h3 style="font-size: 15px; margin-bottom: 8px; color: var(--accent);">2. The Test Script (<code>test/v3/test.js</code>)</h3>
+                  <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import fs from 'fs';
+import path from 'path';
+import routeImportExtract from 'pattern-collector-routesjs-import-extract';
 
-            <!-- V3 Example Container -->
-            <div id="v3-example" style="display: none;">
-               <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 15px;"><strong>Regex Pattern (searchString):</strong> <code style="color: var(--accent); background: var(--bg-hover); padding: 2px 6px; border-radius: 4px;">/import\s+[\s\S]*?\s+from\s+['"][^'"]+['"]|import\s+['"][^'"]+['"]/g</code></p>
-               <div class="grid" style="margin-bottom: 0;">
-                  <div style="flex: 1;">
-                     <h3 style="font-size: 15px; margin-bottom: 8px; color: var(--accent);">JavaScript Execution Code</h3>
-                     <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import patternCollector from 'pattern-collector';
+const filePath = path.join(process.cwd(), "routes.js");
+const fileContent = fs.readFileSync(filePath, 'utf8');
 
-const code = `import { exec } from "child_process";
-import express from "express";
-
-import startServer from "./server.js";
-
-const app = express();
-
-const { port } = startServer(app);
-
-if (process.env.OPEN_BROWSER === "true") {
-    exec(\`start http://localhost:\${port}/v26/quotations/index.html\`);
-};`;
-
-const matches = patternCollector({
-  fileContent: code,
-  searchString: /import\s+[\s\S]*?\s+from\s+['"][^'"]+['"]|import\s+['"][^'"]+['"]/g
+const results = routeImportExtract({
+    fileContent,
+    inShowLog: false
 });
 
-console.log(matches);</code></pre>
-                  </div>
-                  
-                  <div style="flex: 1;">
-                     <h3 style="font-size: 15px; margin-bottom: 8px; color: var(--accent);">Console Output Results</h3>
-                     <pre><code>[
-  'import { exec } from "child_process"',
-  'import express from "express"',
-  'import startServer from "./server.js"'
-]</code></pre>
-                  </div>
+console.log("ssssssssss : ", results);</code></pre>
                </div>
-            </div>
 
-            <!-- V4 Example Container -->
-            <div id="v4-example" style="display: none;">
-               <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 15px;"><strong>Regex Pattern (searchString):</strong> <code style="color: var(--accent); background: var(--bg-hover); padding: 2px 6px; border-radius: 4px;">/^[ \t]*app\.use\s*\(/gm</code></p>
-               <div class="grid" style="margin-bottom: 0;">
-                  <div style="flex: 1;">
-                     <h3 style="font-size: 15px; margin-bottom: 8px; color: var(--accent);">JavaScript Execution Code</h3>
-                     <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>import patternCollector from 'pattern-collector';
-
-const code = `import { exec } from "child_process";
-import dotenv from 'dotenv'
-dotenv.config({ path: '.env' })
-
-import express from "express";
-
-import { router as routerFromapi } from './api/routes.js';
-
-import setupRoutes from "./routes.js";
-import startServer from "./server.js";
-
-const app = express()
-
-app.use('/api', routerFromapi);
-
-setupRoutes(app);
-
-const { port } = startServer(app);
-
-if (process.env.OPEN_BROWSER === "true") {
-    exec(\`start http://localhost:\${port}/v28/quotations/index.html\`);
-};`;
-
-const matches = patternCollector({
-  fileContent: code,
-  searchString: /^[ \t]*app\.use\s*\(/gm
-});
-
-console.log(matches);</code></pre>
-                  </div>
-                  
-                  <div style="flex: 1;">
-                     <h3 style="font-size: 15px; margin-bottom: 8px; color: var(--accent);">Console Output Results</h3>
-                     <pre><code>[
-  'app.use('
+               <div>
+                  <h3 style="font-size: 15px; margin-bottom: 8px; color: var(--accent);">3. Console Output Results</h3>
+                  <pre><code>ssssssssss :  [
+  {
+    variable: 'routerFromv1',
+    folderName: 'v1',
+    line: 'import { router as routerFromv1 } from "./v1/routes.js";',
+    lineNumber: 3
+  },
+  {
+    variable: 'routerFromv2',
+    folderName: 'v2',
+    line: 'import { router as routerFromv2 } from "./v2/routes.js";',
+    lineNumber: 4
+  },
+  ...
 ]</code></pre>
-                  </div>
                </div>
             </div>
          </div>
@@ -593,40 +502,29 @@ console.log(matches);</code></pre>
       <!-- Playground section -->
       <div class="playground">
          <h2>🎮 Live Playground</h2>
-         <p class="playground-p">Input your source code and regular expression to see matched pattern results immediately inside the browser.</p>
+         <p class="playground-p">Input your source code containing router imports to instantly test the extraction logic.</p>
          
          <div class="playground-inputs">
             <div class="input-group">
-               <label for="code-input">Source Code / Text Content</label>
-               <textarea id="code-input" rows="8">import { exec } from "child_process";
-import dotenv from 'dotenv';
-import express from "express";
-import { router as routerFromapi } from './api/routes.js';
+               <label for="code-input">Source Code / File Content</label>
+               <textarea id="code-input" rows="12">import express from 'express';
 
-const PORT = 3000;
-console.log("App is running on port:", PORT);
+import { router as routerFromv1 } from "./v1/routes.js";
+import { router as routerFromv2 } from "./v2/routes.js";
+import { router as routerFromv3 } from "./v3/routes.js";
+import { router as routerFromdoctors } from "./doctors/end-points.js"; // This will NOT match (only routes.js is processed)
+import { router as routerFrommasters } from "./masters/routes.js";
+
+const router = express.Router();
 </textarea>
             </div>
-            
-            <div class="input-group">
-               <label for="regex-input">Global Regular Expression</label>
-               <input type="text" id="regex-input" value="import\s+[\s\S]*?\s+from\s+['&quot;][^'&quot;]+['&quot;]|import\s+['&quot;][^'&quot;]+['&quot;]">
-               <button class="btn" style="margin-top: 15px;" onclick="runCollector(true)">Collect Patterns</button>
-            </div>
          </div>
+         
+         <button class="btn" onclick="runExtractor()">Extract Route Imports</button>
 
          <div class="result-container">
-            <div class="result-label" style="margin-bottom: 10px;">Matches Result</div>
-            <div class="grid" style="margin-bottom: 0;">
-               <div>
-                  <div class="result-label">Indexed Matches</div>
-                  <div class="result-box" id="result-box">Click "Collect Patterns" to see results.</div>
-               </div>
-               <div id="raw-output-col" style="display: none;">
-                  <div class="result-label">Raw Output</div>
-                  <div class="result-box" id="raw-result-box">Click "Collect Patterns" to see results.</div>
-               </div>
-            </div>
+            <div class="result-label" style="margin-bottom: 10px;">Output Results (JSON)</div>
+            <div class="result-box" id="result-box">Click "Extract Route Imports" to see results.</div>
          </div>
       </div>
 
@@ -636,37 +534,6 @@ console.log("App is running on port:", PORT);
    </div>
 
    <script>
-      function switchExample(version) {
-         const versions = ['v2', 'v3', 'v4'];
-         versions.forEach(v => {
-            const div = document.getElementById(`${v}-example`);
-            const btn = document.getElementById(`btn-${v}-tab`);
-            if (v === version) {
-               div.style.display = 'block';
-               btn.style.background = 'var(--bg-hover)';
-               btn.style.borderColor = 'var(--accent)';
-               btn.style.color = 'var(--text-primary)';
-            } else {
-               div.style.display = 'none';
-               btn.style.background = 'var(--bg-card)';
-               btn.style.borderColor = 'var(--border-color)';
-               btn.style.color = 'var(--text-muted)';
-            }
-         });
-      }
-
-      function toggleExampleContent() {
-         const content = document.getElementById('example-content');
-         const btn = document.getElementById('toggle-example-btn');
-         if (content.style.display === 'none') {
-            content.style.display = 'block';
-            btn.innerText = 'Hide Example Code & Output';
-         } else {
-            content.style.display = 'none';
-            btn.innerText = 'Show Example Code & Output';
-         }
-      }
-
       function copyCode(btn) {
          const code = btn.nextElementSibling.innerText;
          navigator.clipboard.writeText(code).then(() => {
@@ -678,58 +545,54 @@ console.log("App is running on port:", PORT);
          });
       }
 
-      function runCollector(showRaw = false) {
+      function runExtractor() {
          const codeText = document.getElementById('code-input').value;
-         const regexText = document.getElementById('regex-input').value;
          const resultBox = document.getElementById('result-box');
-         const rawResultBox = document.getElementById('raw-result-box');
-         const col = document.getElementById('raw-output-col');
          
          try {
-            // Reconstruct the RegExp with the global flag
-            const regex = new RegExp(regexText, 'g');
+            // First step: match overall imports pointing to local files (simulating pattern-collector-routesjs-import)
+            const searchString = /^[ \t]*import\b.*from\s+['"]\.[^'"]*['"];/gm;
+            const lines = codeText.split(/\r?\n/);
             const matches = [];
-            let match;
             
-            while ((match = regex.exec(codeText)) !== null) {
-               matches.push(match[0]);
-               // Safety to prevent infinite loop if regex matches empty string
-               if (match.index === regex.lastIndex) {
-                  regex.lastIndex++;
+            lines.forEach((line, idx) => {
+               const cleanLine = line.replace(/[\r\n]/g, '');
+               if (searchString.test(cleanLine)) {
+                  matches.push({
+                     line: line.trim(),
+                     lineNumber: idx + 1
+                  });
                }
-            }
-            
-            if (matches.length === 0) {
-               resultBox.innerHTML = '<span class="no-match">No pattern matches found.</span>';
-               rawResultBox.innerHTML = '<span class="no-match">No pattern matches found.</span>';
-               col.style.display = 'none';
-               return;
-            }
-            
-            resultBox.innerHTML = '';
-            matches.forEach((item, index) => {
-               const div = document.createElement('div');
-               div.className = 'matched-item';
-               div.innerText = `[${index}] ${item}`;
-               resultBox.appendChild(div);
+               // Reset regex state since it's global
+               searchString.lastIndex = 0;
             });
 
-            rawResultBox.innerText = matches.join('\n');
+            // Second step: parse and filter using the routes.js only regex
+            const parseRegex = /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/routes\.js['"];/;
             
-            if (showRaw) {
-               col.style.display = 'block';
-            } else {
-               col.style.display = 'none';
-            }
+            const results = matches.map(match => {
+               const clean = match.line.replace(/[\r\n]/g, '');
+               const parts = clean.match(parseRegex);
+               
+               if (parts) {
+                  return {
+                     variable: parts[1],
+                     folderName: parts[2],
+                     line: match.line,
+                     lineNumber: match.lineNumber
+                  };
+               }
+               return null;
+            }).filter(Boolean);
+            
+            resultBox.innerText = JSON.stringify(results, null, 2);
          } catch (error) {
-            resultBox.innerHTML = `<span style="color: #ef4444;">RegExp Error: ${error.message}</span>`;
-            rawResultBox.innerHTML = `<span style="color: #ef4444;">RegExp Error: ${error.message}</span>`;
-            col.style.display = 'none';
+            resultBox.innerHTML = `<span style="color: #ef4444;">Extraction Error: ${error.message}</span>`;
          }
       }
       
-      // Auto run playground on page load
-      window.onload = () => runCollector(false);
+      // Auto run on load
+      window.onload = () => runExtractor();
    </script>
 </body>
 

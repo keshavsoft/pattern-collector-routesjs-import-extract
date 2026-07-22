@@ -1,39 +1,44 @@
-# pattern-collector 🔍
+# pattern-collector-routesjs-import-extract 🔍
 
-> **A high-performance pattern collector and ESM import statement analyzer for JavaScript.**
+> **A high-performance ESM import statement analyzer that extracts Express router imports specifically from `routes.js` files.**
 
-[![npm version](https://img.shields.io/npm/v/pattern-collector.svg?style=flat-square&color=38bdf8)](https://www.npmjs.com/package/pattern-collector)
-[![license](https://img.shields.io/npm/l/pattern-collector.svg?style=flat-square&color=34d399)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/pattern-collector-routesjs-import-extract.svg?style=flat-square&color=38bdf8)](https://www.npmjs.com/package/pattern-collector-routesjs-import-extract)
+[![license](https://img.shields.io/npm/l/pattern-collector-routesjs-import-extract.svg?style=flat-square&color=34d399)](LICENSE)
 
 🔗 **Quick Links:**
-*   📦 **NPM Registry**: [npmjs.com/package/pattern-collector](https://www.npmjs.com/package/pattern-collector)
-*   💻 **GitHub Repo**: [github.com/keshavsoft/pattern-collector](https://github.com/keshavsoft/pattern-collector)
-*   📄 **Interactive Docs**: [keshavsoft.github.io/pattern-collector](https://keshavsoft.github.io/pattern-collector/)
-*   ⚙️ **Publish Workflow**: [.github/workflows/npm-publish.yml](file:///d:/KeshavSoftRepos/2026-07-18/ks6/pattern-collector/.github/workflows/npm-publish.yml)
+*   📦 **NPM Registry**: [npmjs.com/package/pattern-collector-routesjs-import-extract](https://www.npmjs.com/package/pattern-collector-routesjs-import-extract)
+*   💻 **GitHub Repo**: [github.com/keshavsoft/pattern-collector-routesjs-import-extract](https://github.com/keshavsoft/pattern-collector-routesjs-import-extract)
+*   📄 **Interactive Docs**: [keshavsoft.github.io/pattern-collector-routesjs-import-extract](https://keshavsoft.github.io/pattern-collector-routesjs-import-extract/)
 
 ---
 
 ## 📖 Overview
 
-`pattern-collector` is a zero-dependency, lightweight JavaScript library designed to scan file content and collect substrings that match a specified pattern or regular expression. 
+`pattern-collector-routesjs-import-extract` is a lightweight, zero-dependency utility to parse and extract structured information from ESM import statements. It scans file contents and locates imports structured like:
 
-It serves as a fast and flexible engine, enabling easy parsing, extraction, and static analysis of source files (such as locating ES Module imports, decorators, function declarations, or other syntactic patterns).
+```javascript
+import { router as routerFromv1 } from "./v1/routes.js";
+```
+
+> [!IMPORTANT]
+> **Strict Target Requirement**  
+> Starting in **v1.6.0+ (utilizing core v5)**, this collector strictly matches imports targeting **`routes.js`** files specifically. Other import naming conventions (such as `end-points.js` or generic filenames) are intentionally ignored.
 
 ---
 
 ## ✨ Features
 
 *   **⚡ Zero Dependencies**: Light, fast, and secure.
-*   **🧩 Flexible Matching**: Collects any patterns by accepting custom global Regular Expressions.
+*   **📂 Focused Route Extraction**: Specifically extracts router imports pointing to `./<folder>/routes.js`.
 *   **📦 ESM Native**: Built for modern ES module environments.
-*   **🏷️ Versioned Under the Hood**: Uses an extensible directory-based versioned core.
+*   **🏷️ Structured Outputs**: Returns variables, folders, line contents, and matching line numbers.
 
 ---
 
 ## 🚀 Installation
 
 ```bash
-npm install pattern-collector
+npm install pattern-collector-routesjs-import-extract
 ```
 
 ---
@@ -42,47 +47,56 @@ npm install pattern-collector
 
 ### `default(options)`
 
-The default export is a function that collects all occurrences of a pattern in the given text.
-
 #### Parameters
 
 An options object containing:
 
-*   **`fileContent`** `(string)`: The raw text or code content to search.
-*   **`searchString`** `(RegExp)`: A regular expression with the global (`g`) flag to match patterns in the content.
+*   **`fileContent`** `(string)`: The raw JavaScript file/code content to analyze.
+*   **`inShowLog`** `(boolean)` (optional): Set to `true` to log collected matches to the console.
 
 #### Returns
 
-*   `(string[])`: An array of matches found. If no matches are found, it returns an empty array.
+*   `(Object[])`: An array of matches, where each match has the structure:
+    *   `variable` `(string)`: The imported router alias (e.g. `routerFromv1`).
+    *   `folderName` `(string)`: The subdirectory name (e.g. `v1`).
+    *   `line` `(string)`: The complete matching import line.
+    *   `lineNumber` `(number)`: The line number in the source file.
 
 ---
 
 ## 💻 Usage Example
 
 ```javascript
-import patternCollector from 'pattern-collector';
+import routeImportExtract from 'pattern-collector-routesjs-import-extract';
 
 const code = `
-import { exec } from "child_process";
-import dotenv from 'dotenv';
-import express from "express";
+import express from 'express';
 
-const PORT = 3000;
+import { router as routerFromv1 } from "./v1/routes.js";
+import { router as routerFromv2 } from "./v2/routes.js";
 `;
 
-// Extract all import statements
-const imports = patternCollector({
+const results = routeImportExtract({
   fileContent: code,
-  searchString: /import\s+[\s\S]*?\s+from\s+['"][^'"]+['"]/g
+  inShowLog: false
 });
 
-console.log(imports);
+console.log(results);
 /*
 Output:
 [
-  'import { exec } from "child_process"',
-  "import dotenv from 'dotenv'",
-  'import express from "express"'
+  {
+    variable: 'routerFromv1',
+    folderName: 'v1',
+    line: 'import { router as routerFromv1 } from "./v1/routes.js";',
+    lineNumber: 4
+  },
+  {
+    variable: 'routerFromv2',
+    folderName: 'v2',
+    line: 'import { router as routerFromv2 } from "./v2/routes.js";',
+    lineNumber: 5
+  }
 ]
 */
 ```

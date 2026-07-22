@@ -9,7 +9,7 @@ const fileContent = fs.readFileSync(filePath, 'utf8');
 
 const k1 = defaultFunc({
     fileContent,
-    inShowLog: true
+    inShowLog: false
 });
 
 console.log("ssssssssss : ", k1);
