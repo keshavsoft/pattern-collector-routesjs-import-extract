@@ -7,7 +7,10 @@ const filePath = path.join(process.cwd(), "routes.js");
 
 const fileContent = fs.readFileSync(filePath, 'utf8');
 
-const k1 = defaultFunc({ fileContent });
+const k1 = defaultFunc({
+    fileContent,
+    inShowLog: true
+});
 
 console.log("ssssssssss : ", k1);
 

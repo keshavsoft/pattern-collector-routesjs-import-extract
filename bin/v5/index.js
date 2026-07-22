@@ -3,10 +3,11 @@ import getAllMatches from "pattern-collector-routesjs-import";
 const parseRegex = /import\s*\{[^}]*router\s+as\s+(\w+)[^}]*\}\s*from\s*['"]\.\/([^/]+)\/end-points\.js['"];/;
 const showLog = false;
 
-const startFunc = ({ fileContent }) => {
+const startFunc = ({ fileContent, inShowLog }) => {
 
     const matches = getAllMatches({ fileContent });
 
+    if (inShowLog) console.log("matches : ", matches);
     if (showLog) console.log("matches : ", matches);
 
     return matches.map(match => {
